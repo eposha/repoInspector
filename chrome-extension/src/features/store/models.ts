@@ -37,6 +37,7 @@ export const INSPECT_DATA_DB: InspectData = {
   issues: {},
   pull_requests_merged_LTM: 0,
   stars_history: {},
+  lastMonthStars: 0,
 };
 
 export const STAGE = {

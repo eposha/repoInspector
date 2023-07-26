@@ -1,5 +1,19 @@
 import { Octokit } from '@octokit/core';
 import {
+  getForkersQuery,
+  getStargazersQuery,
+  issuesQuery,
+  pullRequestsQuery,
+  starHistoryQuery,
+} from '@/features/gql/queries';
+import type {
+  GetForkersQueryQuery,
+  GetStargazersQueryQuery,
+  IssuesQueryQuery,
+  PullRequestsQueryQuery,
+  StarHistoryQueryQuery,
+} from '@/features/gql/graphql.schema';
+import {
   getIssuesStatistic,
   getOctokitRepoData,
   getPullRequestStatistic,
@@ -8,13 +22,6 @@ import {
   serializeUser,
 } from './utils';
 import { initOctokit } from './octokit';
-import {
-  getForkersQuery,
-  getStargazersQuery,
-  issuesQuery,
-  pullRequestsQuery,
-  starHistoryQuery,
-} from './queries';
 
 import { STAGE } from './store/models';
 import { downloaderStore } from './store/downloader';
@@ -132,25 +139,25 @@ class RepoInspector {
 
     let items: any[] = [...prev];
 
-    const query =
-      type === 'stargazers'
-        ? getStargazersQuery(limit)
-        : getForkersQuery(limit);
+    const query = type === 'stargazers' ? getStargazersQuery : getForkersQuery;
 
     const inspectDataPropertyName =
       type === 'stargazers' ? 'stargaze_users' : 'fork_users';
 
     try {
-      const resp: UserResponse = await octokit.graphql(query, {
+      const resp = await octokit.graphql<
+        GetForkersQueryQuery & GetStargazersQueryQuery
+      >(query, {
         owner,
         name,
         cursor,
+        limit,
       });
 
-      const hasNextPage = resp?.repository[type].pageInfo.hasNextPage;
-      const endCursor = resp?.repository[type].pageInfo.endCursor;
-      const currentRequestItems = resp?.repository[type].edges ?? [];
-      const requestRemaining = resp?.rateLimit.remaining;
+      const hasNextPage = resp?.repository?.[type].pageInfo.hasNextPage;
+      const endCursor = resp?.repository?.[type].pageInfo.endCursor;
+      const currentRequestItems = resp?.repository?.[type].edges ?? [];
+      const requestRemaining = resp?.rateLimit?.remaining;
 
       // remove artifacts of graphQL response and normalize data
       const normalizedCurrentRequestItems = await Promise.all(
@@ -213,7 +220,7 @@ class RepoInspector {
     let items: StarHistory[] = [...prev];
 
     try {
-      const resp: StarHistoryResponse = await octokit.graphql(
+      const resp = await octokit.graphql<StarHistoryQueryQuery>(
         starHistoryQuery,
         {
           owner,
@@ -265,7 +272,7 @@ class RepoInspector {
     let items: Issue[] = [...prev];
 
     try {
-      const resp: IssuesResponse = await octokit.graphql(issuesQuery, {
+      const resp = await octokit.graphql<IssuesQueryQuery>(issuesQuery, {
         owner,
         name,
         cursor,
@@ -313,7 +320,7 @@ class RepoInspector {
     let items: PullRequest[] = [...prev];
 
     try {
-      const resp: PullRequestsResponse = await octokit.graphql(
+      const resp = await octokit.graphql<PullRequestsQueryQuery>(
         pullRequestsQuery,
         {
           owner,

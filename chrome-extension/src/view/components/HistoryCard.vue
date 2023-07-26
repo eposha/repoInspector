@@ -65,7 +65,9 @@ export default defineComponent({
     _checkIsLimitsRestored() {
       const now = new Date().getTime();
 
-      if (now >= new Date(this.repoData.restoreLimitsDate).getTime()) {
+      if (
+        now >= new Date(this.repoData.restoreLimitsDate ?? new Date()).getTime()
+      ) {
         this.isPauseBTNDisabled = false;
       }
     },
