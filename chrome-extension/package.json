@@ -19,9 +19,7 @@
     "apexcharts": "^3.41.0",
     "core-js": "^3.8.3",
     "graphql": "^16.7.1",
-    "graphql-request": "^6.1.0",
     "rollbar": "^2.26.0",
-    "vite-plugin-graphql-strings": "^0.3.0",
     "vue": "^3.2.13",
     "vue3-apexcharts": "^1.4.4"
   },

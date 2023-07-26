@@ -3111,7 +3111,7 @@ graphql-operations-string-loader@^1.0.2:
     graphql "^15.3.0"
     graphql-tag "^2.11.0"
 
-graphql-request@^6.0.0, graphql-request@^6.1.0:
+graphql-request@^6.0.0:
   version "6.1.0"
   resolved "https://registry.yarnpkg.com/graphql-request/-/graphql-request-6.1.0.tgz#f4eb2107967af3c7a5907eb3131c671eac89be4f"
   integrity sha512-p+XPfS4q7aIpKVcgmnZKhMNqhltk20hfXtkaIkTfjjmiKMJ5xrt5c743cL03y/K7y1rg3WrIC49xGiEQ4mxdNw==
@@ -3119,7 +3119,7 @@ graphql-request@^6.0.0, graphql-request@^6.1.0:
     "@graphql-typed-document-node/core" "^3.2.0"
     cross-fetch "^3.1.5"
 
-graphql-tag@^2.10.4, graphql-tag@^2.11.0:
+graphql-tag@^2.11.0:
   version "2.12.6"
   resolved "https://registry.yarnpkg.com/graphql-tag/-/graphql-tag-2.12.6.tgz#d441a569c1d2537ef10ca3d1633b48725329b5f1"
   integrity sha512-FdSNcu2QQcWnM2VNvSCCDCVS5PpPqpzgFT8+GXzqJuoDd0CBncxCY278u4mhRO7tMgo2JjgJA5aZ+nWSQ/Z+xg==
@@ -5036,13 +5036,6 @@ value-or-promise@^1.0.11, value-or-promise@^1.0.12:
   version "1.0.12"
   resolved "https://registry.yarnpkg.com/value-or-promise/-/value-or-promise-1.0.12.tgz#0e5abfeec70148c78460a849f6b003ea7986f15c"
   integrity sha512-Z6Uz+TYwEqE7ZN50gwn+1LCVo9ZVrpxRPOhOLnncYkY1ZzOYtrX8Fwf/rFktZ8R5mJms6EZf5TqNOMeZmnPq9Q==
-
-vite-plugin-graphql-strings@^0.3.0:
-  version "0.3.0"
-  resolved "https://registry.yarnpkg.com/vite-plugin-graphql-strings/-/vite-plugin-graphql-strings-0.3.0.tgz#ee3b3b2074fd0ef59dcc9d8dc4370937f4872ee1"
-  integrity sha512-LkVcu/8DaN32gAH2S0C+TqaUiQ4of6Htt7beKbAIoFFjZ1HuAf2PkMyH4Z/uxc6P8ucK+U8tBRBFdj1iWknEgQ==
-  dependencies:
-    graphql-tag "^2.10.4"
 
 vite@^4.3.0:
   version "4.4.2"
